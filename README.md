@@ -17,9 +17,9 @@
 
 This project simulates a **banking system**, with a primary focus on demonstrating **microservice architecture** in a real-world environment.
 
-It employs a **hybrid communication model**, where **synchronous** interactions are handled via **WebClient**, ensuring transactional integrity, while **asynchronous event-driven communication** is powered by **Apache Kafka** to enable scalable and efficient message processing.
-
-This approach balances **reliability**, **scalability**, and **flexibility**, making it a practical showcase of modern distributed system design.
+It adopts a **hybrid architecture**, where **WebClient** is used for **synchronous** interactions, while **Apache Kafka** enables **event-driven** processing.
+The system consists of multiple independent microservices, each handling a specific domain, and follows a **stateless design**.
+The project is fully containerized using **Docker**, ensuring seamless setup and deployment.
 
 ## Prerequisites
 
