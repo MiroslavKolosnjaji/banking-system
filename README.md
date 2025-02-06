@@ -23,7 +23,7 @@ The project is fully containerized using **Docker**, ensuring seamless setup and
 
 ## Prerequisites
 
-Before you begin, ensure that you have the following installed and set up on your machine:
+If you want to run this project locally, ensure that you have the following installed and set up on your machine:
 
 1. **Docker Desktop**
    Docker is required to run the services in containers. You can download and install Docker Desktop
