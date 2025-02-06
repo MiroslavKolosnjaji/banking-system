@@ -15,11 +15,11 @@
 
 ## Project Introduction
 
-This project is primarily intended to demonstrate a **microservice architecture**, focusing on both **synchronous** and **asynchronous** communication.
+This project simulates a **banking system**, with a primary focus on demonstrating **microservice architecture** in a real-world environment.
 
-While the goal is not to build a real banking system, the project showcases how microservices can operate in a real-world environment.
-It adopts a **hybrid architecture**, where **synchronous** communication is handled through **WebClient** and **asynchronous** communication utilizes an **event-driven architecture** powered by **Apache Kafka**.
-This approach enables greater flexibility and scalability in system design and efficient event processing between services.
+It employs a **hybrid communication model**, where **synchronous** interactions are handled via **WebClient**, ensuring transactional integrity, while **asynchronous event-driven communication** is powered by **Apache Kafka** to enable scalable and efficient message processing.
+
+This approach balances **reliability**, **scalability**, and **flexibility**, making it a practical showcase of modern distributed system design.
 
 ## Prerequisites
 
