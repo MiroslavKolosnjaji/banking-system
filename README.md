@@ -1,4 +1,6 @@
 ![WIP](https://img.shields.io/badge/WIP-Work%20in%20Progress-yellow?logo=github)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 # Banking System  (Microservice Architecture DEMO)
 
 ## Table of Contents
