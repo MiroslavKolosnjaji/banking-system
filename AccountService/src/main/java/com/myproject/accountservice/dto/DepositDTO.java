@@ -1,5 +1,6 @@
 package com.myproject.accountservice.dto;
 
+import com.myproject.accountservice.model.Currency;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class DepositDTO {
 
-    @NotNull(message = "User ID cannot be null")
     private Long userId;
-
-    @NotNull(message = "Amount cannot be null")
     private BigDecimal amount;
+    private Currency currency;
 }

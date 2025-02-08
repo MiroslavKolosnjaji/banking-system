@@ -365,8 +365,8 @@ class AccountServiceImplTest {
                 .balance(new BigDecimal("10000"))
                 .build();
 
-        WithdrawDTO withdrawDTO = new WithdrawDTO(1L, transferDTO.getAmount());
-        DepositDTO depositDTO = new DepositDTO(2L, transactionDTO.getAmount());
+        WithdrawDTO withdrawDTO = new WithdrawDTO(1L, transferDTO.getAmount(), transferDTO.getCurrency());
+        DepositDTO depositDTO = new DepositDTO(2L, transactionDTO.getAmount(), account.getCurrency());
 
         when(accountRepository.findAccountByAccountNumber(transferDTO.getRecipientAccountNumber())).thenReturn(Optional.of(account));
         doReturn(transactionDTO).when(accountService).withdraw(1L, withdrawDTO);
@@ -406,7 +406,7 @@ class AccountServiceImplTest {
                 .amount(new BigDecimal("5000"))
                 .build();
 
-        WithdrawDTO withdrawDTO = new WithdrawDTO(1L, transferDTO.getAmount());
+        WithdrawDTO withdrawDTO = new WithdrawDTO(1L, transferDTO.getAmount(), transferDTO.getCurrency());
 
         when(accountRepository.findAccountByAccountNumber(transferDTO.getRecipientAccountNumber())).thenReturn(Optional.of(account));
         doThrow(InsufficientFundsException.class).when(accountService).withdraw(1L, withdrawDTO);

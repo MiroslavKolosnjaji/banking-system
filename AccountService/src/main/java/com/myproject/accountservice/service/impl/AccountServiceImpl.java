@@ -9,7 +9,6 @@ import com.myproject.accountservice.exception.service.status.AccountBlockedExcep
 import com.myproject.accountservice.exception.service.status.AccountClosedException;
 import com.myproject.accountservice.exception.service.status.AccountFrozenException;
 import com.myproject.accountservice.exception.service.status.AccountRestrictedException;
-import com.myproject.accountservice.mapper.TransactionMapper;
 import com.myproject.accountservice.model.Currency;
 import com.myproject.accountservice.model.Status;
 import com.myproject.accountservice.exception.service.AccountNotFoundException;
@@ -72,6 +71,7 @@ public class AccountServiceImpl implements AccountService {
     public TransactionDTO deposit(Long id, DepositDTO depositDTO) throws AccountNotFoundException, AccountStatusViolationException, UnauthorizedAccountAccessException {
 
         Account account = getVerifiedAccount(id, depositDTO.getUserId());
+        validateTransaction(account, depositDTO.getCurrency());
 
         BigDecimal currentBalance = account.getBalance();
         account.setBalance(currentBalance.add(depositDTO.getAmount()));
@@ -84,6 +84,7 @@ public class AccountServiceImpl implements AccountService {
     public TransactionDTO withdraw(Long id, WithdrawDTO withdrawDTO) throws AccountNotFoundException, AccountStatusViolationException, UnauthorizedAccountAccessException {
 
         Account account = getVerifiedAccount(id, withdrawDTO.getUserId());
+        validateTransaction(account, withdrawDTO.getCurrency());
 
         BigDecimal currentBalance = account.getBalance();
         if (currentBalance.compareTo(withdrawDTO.getAmount()) < 0)
@@ -99,12 +100,12 @@ public class AccountServiceImpl implements AccountService {
     public TransactionDTO transfer(Long id, TransferDTO transferDTO) throws AccountNotFoundException, AccountStatusViolationException, UnauthorizedAccountAccessException {
 
         Account recipientAccount = getRecipientAccount(transferDTO.getRecipientAccountNumber());
-        validateTransfer(recipientAccount, transferDTO.getCurrency());
+        validateTransaction(recipientAccount, transferDTO.getCurrency());
 
         try {
 
-            TransactionDTO senderTransaction = withdraw(id, new WithdrawDTO(transferDTO.getUserId(), transferDTO.getAmount()));
-            deposit(recipientAccount.getId(), new DepositDTO(recipientAccount.getUserId(), senderTransaction.getAmount()));
+            TransactionDTO senderTransaction = withdraw(id, new WithdrawDTO(transferDTO.getUserId(), transferDTO.getAmount(), transferDTO.getCurrency()));
+            deposit(recipientAccount.getId(), new DepositDTO(recipientAccount.getUserId(), senderTransaction.getAmount(), recipientAccount.getCurrency()));
 
             return senderTransaction;
 
@@ -141,7 +142,7 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.deleteById(id);
     }
 
-    private void validateTransfer(Account account, Currency currency) throws AccountRestrictedException, AccountBlockedException, AccountFrozenException, AccountClosedException, CurrencyMismatchException {
+    private void validateTransaction(Account account, Currency currency) throws AccountRestrictedException, AccountBlockedException, AccountFrozenException, AccountClosedException, CurrencyMismatchException {
         checkAccountStatus(account.getStatus());
         checkCurrencyCompatibility(currency,account.getCurrency());
     }
@@ -160,8 +161,6 @@ public class AccountServiceImpl implements AccountService {
 
         Account account = getById(accountId);
         verifyUser(account, userId);
-        checkAccountStatus(account.getStatus());
-
         return account;
     }
 
