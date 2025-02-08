@@ -39,9 +39,8 @@ public class TransferStrategy implements TransactionStrategy {
 
         transactionDetailsDTO.setStatus(setStatus(transactionDetailsDTO));
         transactionDetailsDTO.setDescription(setUpDescription(transactionDetailsDTO.getDescription()));
+        transactionDetailsDTO.setCurrency(setCurrency(transactionDetailsDTO.getCurrency(), transferDTO.getCurrency()));
 
-        if (transactionDetailsDTO.getCurrency() == null)
-            transactionDetailsDTO.setCurrency(transferDTO.getCurrency());
 
         return transactionDetailsDTO;
     }

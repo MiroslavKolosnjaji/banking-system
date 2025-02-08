@@ -39,6 +39,7 @@ public class DepositStrategy implements TransactionStrategy {
 
         transactionDetailsDTO.setStatus(setStatus(transactionDetailsDTO));
         transactionDetailsDTO.setDescription(setUpDescription(transactionDetailsDTO.getDescription()));
+        transactionDetailsDTO.setCurrency(setCurrency(transactionDetailsDTO.getCurrency(), depositDTO.getCurrency()));
 
         return transactionDetailsDTO;
     }

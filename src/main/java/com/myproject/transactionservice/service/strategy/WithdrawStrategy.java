@@ -39,6 +39,7 @@ public class WithdrawStrategy implements TransactionStrategy {
 
         transactionDetailsDTO.setStatus(setStatus(transactionDetailsDTO));
         transactionDetailsDTO.setDescription(setUpDescription(transactionDetailsDTO.getDescription()));
+        transactionDetailsDTO.setCurrency(setCurrency(transactionDetailsDTO.getCurrency(), withdrawDTO.getCurrency()));
 
         return transactionDetailsDTO;
     }
