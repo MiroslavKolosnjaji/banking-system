@@ -19,6 +19,4 @@ public class TransferRequestDTO extends TransactionRequestDTO {
     @NotEmpty(message = "Recipient account number required.")
     private String recipientAccountNumber;
 
-    @NotNull(message = "Currency required.")
-    private String currency;
 }

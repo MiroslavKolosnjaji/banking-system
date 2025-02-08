@@ -181,6 +181,7 @@ class TransactionControllerTest {
                 .accountId(1L)
                 .transactionType(TransactionType.DEPOSIT)
                 .amount(new BigDecimal("100"))
+                .currency("RSD")
                 .build();
 
         DepositDTO depositDTO = DepositDTO.builder().build();
@@ -230,6 +231,7 @@ class TransactionControllerTest {
                 .accountId(1L)
                 .transactionType(TransactionType.WITHDRAWAL)
                 .amount(new BigDecimal("100"))
+                .currency("RSD")
                 .build();
 
         WithdrawDTO withdrawDTO = WithdrawDTO.builder().build();

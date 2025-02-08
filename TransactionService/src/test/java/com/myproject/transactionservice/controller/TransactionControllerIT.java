@@ -162,6 +162,7 @@ class TransactionControllerIT {
                 .accountId(1L)
                 .transactionType(TransactionType.DEPOSIT)
                 .amount(new BigDecimal("1000"))
+                .currency("RSD")
                 .build();
 
 
@@ -214,6 +215,7 @@ class TransactionControllerIT {
                 .accountId(1L)
                 .transactionType(TransactionType.WITHDRAWAL)
                 .amount(new BigDecimal("500"))
+                .currency("RSD")
                 .build();
 
         mockMvc.perform(post(TransactionController.TRANSACTION_URI + "/withdraw")

@@ -31,6 +31,10 @@ public abstract class BaseRequest {
     @DecimalMin(value = "0.0", inclusive = false, message = "Amount must be greater than 0.")
     private BigDecimal amount;
 
+    @NotNull(message = "Currency required.")
+    @Size(min = 3, max = 3, message = "Currency must be exactly 3 characters")
+    private String currency;
+
     @NotNull(message = "Transaction type required")
     private TransactionType transactionType;
 }

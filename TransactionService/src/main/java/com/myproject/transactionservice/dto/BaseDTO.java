@@ -22,5 +22,6 @@ public abstract class BaseDTO {
     private Long userId;
     private Long accountId;
     private BigDecimal amount;
+    private String currency;
     private TransactionType transactionType;
 }

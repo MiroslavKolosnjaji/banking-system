@@ -12,5 +12,4 @@ import lombok.experimental.SuperBuilder;
 public class TransferDTO extends BaseDTO {
 
     private String recipientAccountNumber;
-    private String currency;
 }
