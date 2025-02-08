@@ -93,10 +93,12 @@ class AccountControllerTest {
         depositRequest = new DepositRequest();
         depositRequest.setAmount(new BigDecimal("123"));
         depositRequest.setUserId(1L);
+        depositRequest.setCurrency(Currency.RSD);
 
         withdrawRequest = new WithdrawRequest();
         withdrawRequest.setAmount(new BigDecimal("123"));
         withdrawRequest.setUserId(1L);
+        withdrawRequest.setCurrency(Currency.RSD);
     }
 
 
@@ -444,8 +446,9 @@ class AccountControllerTest {
         verify(accountService).withdraw(anyLong(), any(WithdrawDTO.class));
     }
 
+    @DisplayName("Account Withdraw Failed - Insufficient fund")
     @Test
-    void testWithdraw_whenInsufficientFoundReached_returns409StatusCode() throws Exception {
+    void testWithdraw_whenInsufficientFundReached_returns409StatusCode() throws Exception {
 
         //given
         WithdrawDTO withdrawDTO = new WithdrawDTO();

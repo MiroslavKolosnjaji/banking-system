@@ -1,5 +1,6 @@
 package com.myproject.accountservice.controller.request;
 
+import com.myproject.accountservice.model.Currency;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,4 +25,8 @@ public abstract class BaseRequest {
     @NotNull(message = "Amount required.")
     @DecimalMin(value = "0.0", inclusive = false, message = "Amount must be greater than 0")
     private BigDecimal amount;
+
+
+    @NotNull(message = "Currency required.")
+    private Currency currency;
 }

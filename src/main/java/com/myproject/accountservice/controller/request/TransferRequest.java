@@ -22,6 +22,4 @@ public class TransferRequest extends BaseRequest{
     @Size(min = 15, max = 34, message = "Account number size must be between 15 and 34 characters")
     private String recipientAccountNumber;
 
-    @NotNull(message = "Currency required.")
-    private Currency currency;
 }

@@ -177,6 +177,7 @@ class AccountControllerIT {
     void testDeposit_whenValidInputProvided_returns200StatusCode() throws Exception {
 
         depositRequest.setAmount(new BigDecimal("200"));
+        depositRequest.setCurrency(Currency.RSD);
 
         mockMvc.perform(put("/api/v1/account/deposit/{accountId}", accountId)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -203,6 +204,7 @@ class AccountControllerIT {
     void testWithdraw_whenValidInputProvided_returns200StatusCode() throws Exception {
 
         withdrawRequest.setAmount(new BigDecimal("50"));
+        withdrawRequest.setCurrency(Currency.RSD);
 
         mockMvc.perform(put("/api/v1/account/withdraw/{accountId}", accountId)
                         .contentType(MediaType.APPLICATION_JSON)
