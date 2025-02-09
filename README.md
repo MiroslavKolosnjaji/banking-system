@@ -62,18 +62,6 @@ If you want to run this project locally, ensure that you have the following inst
     - **RAM**: 6 GB (Recommended: 8 GB)
     - **Disc Space:** 10 GB free
 
-## Accessing the Project
-
-**Since this is a private project, cloning the repository directly via Git is not possible.
-However, you can download the project as ZIP file and extract it to your desired folder.
-Once the files are extracted, you can start the services by running Docker Compose from that folder.**
-
-**Steps:**
-1. **Download the ZIP file of the project.**
-2. **Extract the contents to a folder of your choice.**
-3. **Open a terminal/command prompt and follow instructions from [step 2 in Installation guide.](#installation-guide)**
-
-
 ## Installation Guide
 
 To deploy the project to your local computer, follow these steps:
