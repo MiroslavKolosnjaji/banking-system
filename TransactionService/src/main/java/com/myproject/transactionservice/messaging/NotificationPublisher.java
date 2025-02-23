@@ -29,8 +29,9 @@ public class NotificationPublisher {
     public void send (TransactionCreatedEvent transactionCreatedEvent) throws ExecutionException, InterruptedException {
 
         log.info("Transaction id: {}", transactionCreatedEvent.getTransactionId());
-        log.info("Account number: {}", transactionCreatedEvent.getAccountNumber());
         log.info("User id: {}", transactionCreatedEvent.getUserId());
+        log.info("Email: {}", transactionCreatedEvent.getEmail());
+        log.info("Account number: {}", transactionCreatedEvent.getAccountNumber());
         log.info("Amount: {}", transactionCreatedEvent.getAmount());
         log.info("Transaction Type: {}", transactionCreatedEvent.getTransactionType());
         log.info("Balance: {}", transactionCreatedEvent.getBalance());

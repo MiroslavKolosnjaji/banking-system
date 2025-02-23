@@ -31,12 +31,13 @@ public class WithdrawStrategy implements TransactionStrategy {
 
         WithdrawDTO withdrawDTO = (WithdrawDTO) baseDTO;
 
-        userClient.isUserExists(withdrawDTO.getUserId());
+        String email = userClient.isUserExists(withdrawDTO.getUserId());
 
         WithdrawRequestDTO withdrawRequestDTO = accountMapper.withdrawDTOToWithdrawRequestDTO(withdrawDTO);
         AccountResponse accountResponse = accountClient.withdraw(withdrawDTO.getAccountId(), withdrawRequestDTO);
         TransactionDetailsDTO transactionDetailsDTO = accountMapper.accountResponseToTransactionDetailsDTO(accountResponse);
 
+        transactionDetailsDTO.setEmail(email);
         transactionDetailsDTO.setStatus(setStatus(transactionDetailsDTO));
         transactionDetailsDTO.setDescription(setUpDescription(transactionDetailsDTO.getDescription()));
         transactionDetailsDTO.setCurrency(setCurrency(transactionDetailsDTO.getCurrency(), withdrawDTO.getCurrency()));

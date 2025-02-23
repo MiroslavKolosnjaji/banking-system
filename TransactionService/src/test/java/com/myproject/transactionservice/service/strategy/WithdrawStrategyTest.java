@@ -47,7 +47,7 @@ class WithdrawStrategyTest {
         AccountResponse accountResponse = AccountResponse.builder().build();
         TransactionDetailsDTO transactionDetailsDTO = TransactionDetailsDTO.builder().build();
 
-        when(userClient.isUserExists(anyLong())).thenReturn(true);
+        when(userClient.isUserExists(anyLong())).thenReturn("test@example.com");
         when(accountMapper.withdrawDTOToWithdrawRequestDTO(withdrawDTO)).thenReturn(withdrawRequestDTO);
         when(accountClient.withdraw(withdrawDTO.getAccountId(), withdrawRequestDTO)).thenReturn(accountResponse);
         when(accountMapper.accountResponseToTransactionDetailsDTO(accountResponse)).thenReturn(transactionDetailsDTO);
@@ -55,7 +55,7 @@ class WithdrawStrategyTest {
 
         TransactionDetailsDTO performedTransaction = withdrawStrategy.performTransaction(withdrawDTO);
 
-        assertNotNull(performedTransaction, "Performed (WITDRAW) transaction should not be null");
+        assertNotNull(performedTransaction, "Performed (WITHDRAW) transaction should not be null");
 
         verify(userClient).isUserExists(anyLong());
         verify(accountMapper).withdrawDTOToWithdrawRequestDTO(withdrawDTO);

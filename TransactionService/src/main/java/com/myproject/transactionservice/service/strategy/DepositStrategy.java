@@ -31,12 +31,13 @@ public class DepositStrategy implements TransactionStrategy {
 
         DepositDTO depositDTO = (DepositDTO) baseDTO;
 
-        userClient.isUserExists(depositDTO.getUserId());
+        String email = userClient.isUserExists(depositDTO.getUserId());
 
         DepositRequestDTO depositRequest = accountMapper.depositDTOToDepositRequestDTO(depositDTO);
         AccountResponse accountResponse = accountClient.deposit(depositDTO.getAccountId(), depositRequest);
         TransactionDetailsDTO transactionDetailsDTO = accountMapper.accountResponseToTransactionDetailsDTO(accountResponse);
 
+        transactionDetailsDTO.setEmail(email);
         transactionDetailsDTO.setStatus(setStatus(transactionDetailsDTO));
         transactionDetailsDTO.setDescription(setUpDescription(transactionDetailsDTO.getDescription()));
         transactionDetailsDTO.setCurrency(setCurrency(transactionDetailsDTO.getCurrency(), depositDTO.getCurrency()));

@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Builder
 public class TransactionDetailsDTO {
 
-
+    private String email;
     private String accountNumber;
     private BigDecimal amount;
     private BigDecimal balance;

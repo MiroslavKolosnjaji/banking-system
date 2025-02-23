@@ -36,16 +36,16 @@ public class UserClient {
     }
 
 
-    public boolean isUserExists(Long userId) {
+    public String isUserExists(Long userId) {
 
-        return Boolean.TRUE.equals(executeRequest(CHECK_USER_URL, userId)
+        return executeRequest(CHECK_USER_URL, userId)
                 .onErrorResume(UserErrorException.class, e -> Mono.error(new UserNotFoundException("User with ID " + userId + " doesn't exists.")))
                 .onErrorResume(ClientErrorException.class, e -> Mono.error(new RuntimeException(e.getMessage())))
-                .block());
+                .block();
 
     }
 
-    private Mono<Boolean> executeRequest(String url, Long userId) {
+    private Mono<String> executeRequest(String url, Long userId) {
 
         return webClient.get()
                 .uri(url, userId)
@@ -56,7 +56,7 @@ public class UserClient {
                                         Mono.error(new UserErrorException(errorResponse))))
                 .onStatus(HttpStatusCode::is4xxClientError, ClientUtils::handle4xxError)
                 .onStatus(HttpStatusCode::is5xxServerError, ClientUtils::handle5xxError)
-                .bodyToMono(Boolean.class);
+                .bodyToMono(String.class);
 
     }
 

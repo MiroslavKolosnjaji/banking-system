@@ -47,7 +47,7 @@ class TransferStrategyTest {
         AccountResponse accountResponse = AccountResponse.builder().build();
         TransactionDetailsDTO transactionDetailsDTO = TransactionDetailsDTO.builder().build();
 
-        when(userClient.isUserExists(anyLong())).thenReturn(true);
+        when(userClient.isUserExists(anyLong())).thenReturn("test@example.com");
         when(accountMapper.transferDTOToTransferRequestDTO(transferDTO)).thenReturn(transferRequestDTO);
         when(accountClient.transfer(transferDTO.getAccountId(), transferRequestDTO)).thenReturn(accountResponse);
         when(accountMapper.accountResponseToTransactionDetailsDTO(accountResponse)).thenReturn(transactionDetailsDTO);
