@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<body style="background-color: #f4f4f4; font-family: Arial, Helvetica, sans-serif; text-align: center;">
+
+<h1 style="color: rgb(182, 28, 61);">Banking System Project</h1>
+<h2 style="color: rgb(182, 28, 61);"><strong>(DEMO)</strong></h2>
+
+<table role="presentation" width="700px" cellspacing="0" cellpadding="10" , border="0"
+       style="background-color: white; border-radius: 10px; width: 700px; margin: auto; border-collapse: collapse; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+
+    <tr>
+        <td style="text-align: left; font-size: 18px; width: 100%;" colspan="2">
+            <p>Dear valued customer,</p>
+            <p>We regret to inform you that a recent transaction could not be processed successfully<br>
+                Please find the transaction details below:
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center; margin: auto; font-size: 30px; color: white; background-color: rgb(182, 28, 61);"
+            colspan="2">
+            <strong th:text="${header}"></strong>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-right: 0; text-align: left; width: 50%; font-size: 16px; color: #333;">
+            <div style="padding: 15px;">
+                <strong>Transaction Type</strong>
+            </div>
+        </td>
+        <td style="padding-left: 0; text-align: right; width: 50%; font-size: 16px; color: #333;">
+            <div style="padding: 15px;">
+                <strong th:text="${transactionType}"></strong>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-right: 0; text-align: left; width: 50%; font-size: 16px; color: #333;">
+            <div style="padding: 15px;">
+                <strong>Date</strong>
+            </div>
+        </td>
+        <td style="padding-left: 0; text-align: right; width: 50%; font-size: 16px; color: #333;">
+            <div style="padding: 15px;">
+                <strong th:text="${date}"></strong>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 1px solid rgb(223, 223, 223); padding-right: 0; text-align: left; width: 100%; font-size: 16px; color: #333;">
+            <div style="padding: 15px;">
+                <strong>Details:</strong>
+                <p th:text="${details}"></p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: left; width: 100%; font-size: 18px;" colspan="2">
+            <p>For more details or assistance, please contact our support team.</p>
+            <p>Sincerely,<br>
+                Your Banking System</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: left; width: 100%; font-size: 18px;" colspan="2">
+            <p style="color: rgb(223, 48, 48);">
+                Please note that this is a demonstration of the Banking System Project notification, and this is not a real transaction.
+                The details
+                provided are for illustrative purposes only.
+            </p>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>

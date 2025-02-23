@@ -17,10 +17,12 @@ By leveraging an event-driven architecture using Apache Kafka, the Notification 
 - **Spring Data MongoDB:** Simplifies database interactions with MongoDB, providing repository support and seamless mapping of Java objects to MongoDB documents.
 - **MapStruct:** Used for mapping between domain entities and DTOs.
 - **Lombok:** Library for reducing boilerplate code in Java.
+- **Thymeleaf:** A Java templating engine for server-side rendering in Spring Boot applications, enabling dynamic HTML generation while maintaining valid standalone templates.
 - **Apache Kafka:** Event streaming platform used for communication between services in an event-driven architecture.
 - **MongoDB:** NoSQL database used for scalable, high-performance storage of unstructured or semi-structured data.
 - **JUnit5:** Testing framework for unit and integration testing in Java.
 - **Mockito:** Framework for creating mock objects in automated testing.
+- **GreenMail:** A test-friendly email server for Java that supports SMTP, IMAP, and POP3, enabling email testing in applications.
 - **Testcontainers:** Library for running lightweight, disposable containers for database and service integration tests.
 - **Docker:** A platform for building, distributing, and running applications in containers.
 

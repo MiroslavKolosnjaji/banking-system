@@ -19,7 +19,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document
+@Document(collection = "transaction_notifications")
 public class TransactionNotification {
 
     @Id
@@ -28,13 +28,15 @@ public class TransactionNotification {
     private String messageId;
     private Long transactionId;
     private Long userId;
+    private String email;
     private String accountNumber;
     private BigDecimal amount;
     private BigDecimal balance;
+    private String currency;
     private String transactionType;
     private String description;
     private String status;
-    private NotificationType notificationType;
+    private EmailStatus emailStatus;
 
     @CreatedDate
     private Instant createdAt;
