@@ -64,11 +64,12 @@ If you want to run this project locally, ensure that you have the following inst
         email.host=smtp.yourprovider.com
         email.port=yourPort
     ```
+   
    - **NOTES:**
      - **Ensure that you use a valid and accessible email address for configuration, as this project actively sends emails.**
      - **Avoid using temporary or incorrect email addresses to prevent sending notifications to unintended recipients.**
      - **If testing, consider using a dedicated testing email account to avoid disruptions to your primary inbox.**
-
+     - **To view email examples, refer to the API Documentation section under [Email Notifications](#email-notifications)**
 
 
 5. **Postman** (Optional)
@@ -219,6 +220,16 @@ If you're not using Postman, you can still refer to the collection file as a ref
 
 For API documentation, including all endpoints, request/response examples, and descriptions, please refer to the [**Postman collection**](https://documenter.getpostman.com/view/33317443/2sAYX5KNF7).
 This collection contains API requests for managing users, accounts, and transactions in the banking system.
+
+
+### Email Notifications
+
+The system sends email notifications for important account activities. Below are examples of email notifications users receive:
+
+-   [Deposit Confirmation](Docs/examples/emails/transaction/deposit_confirmation.png)
+-   [Withdrawal Confirmation](Docs/examples/emails/transaction/withdrawal_confirmation.png)
+-   [Transfer Confirmation](Docs/examples/emails/transaction/transfer_confirmation.png)
+
 ## Microservices
 
 This project consists of the following microservices:
