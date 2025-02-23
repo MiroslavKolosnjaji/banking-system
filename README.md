@@ -46,7 +46,32 @@ If you want to run this project locally, ensure that you have the following inst
    This project uses **Java 17**. Make sure you have JDK 17 installed.
 
 
-4. **Postman** (Optional)
+4. **Enable email notifications**
+
+    To fully utilize this project, you need to configure email notifications.
+
+   - The project includes a preconfigured email setup for Gmail. If you're using Gmail, you only need to generate an app password.
+     You can find instructions on how to do this in [this guide](https://www.youtube.com/watch?v=ZfEK3WP73eY).
+    - If you're using another email provider (e.g., Outlook, Yahoo, etc.), refer to your provider's documentation for SMTP configuration and app password generation.
+    - Once you have your credentials, update the ```docker-compose``` file (lines 208 and 209) with your email and password:
+   
+   ```yaml
+    - YOUR_USERNAME=yourEmail@gmail.com
+    - YOUR_PASSWORD=abcd efgh ijkl mnop 
+   ```
+   - If you are using an email provider other than Gmail, you will also need to update the email configuration settings in the NotificationService [application.properties](NotificationService/src/main/resources/application.properties) file:
+    ```properties
+        email.host=smtp.yourprovider.com
+        email.port=yourPort
+    ```
+   - **NOTES:**
+     - **Ensure that you use a valid and accessible email address for configuration, as this project actively sends emails.**
+     - **Avoid using temporary or incorrect email addresses to prevent sending notifications to unintended recipients.**
+     - **If testing, consider using a dedicated testing email account to avoid disruptions to your primary inbox.**
+
+
+
+5. **Postman** (Optional)
 
    If you'd like to test the APIs, I recommend using **Postman** to easily interact with the services.
    You can download Postman from the [Postman's official website](https://www.postman.com/downloads/).
@@ -57,7 +82,7 @@ If you want to run this project locally, ensure that you have the following inst
    Please refer to [API Documentation](#api-documentation)
 
 
-5. **Minimum system resources**
+6. **Minimum system resources**
     - **RAM**: 6 GB (Recommended: 8 GB)
     - **Disc Space:** 10 GB free
 
