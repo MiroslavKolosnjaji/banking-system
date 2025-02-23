@@ -4,6 +4,16 @@ coverage:
       default:
         target: 75%
         threshold: 5%
+      service:
+        paths:
+          - "src/main/java/com/myproject/notificationservice/service/**"
+        target: 80%
+        threshold: 5%
+      handler:
+        paths:
+          - "src/main/java/com/myproject/notificationservice/messaging/handler/**"
+        target: 90%
+        threshold: 5%
 
     patch:
       default:

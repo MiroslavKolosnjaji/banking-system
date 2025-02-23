@@ -3,8 +3,10 @@ package com.myproject.notificationservice.model;
 /**
  * @author Miroslav Kološnjaji
  */
-public enum NotificationType {
+public enum EmailStatus {
 
-    EMAIL,
-    SMS
+    PENDING,
+    SENT,
+    DELIVERED,
+    DOESNT_EXISTS
 }

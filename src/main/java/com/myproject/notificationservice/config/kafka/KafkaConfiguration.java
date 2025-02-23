@@ -1,5 +1,6 @@
 package com.myproject.notificationservice.config.kafka;
 
+import com.myproject.core.transaction.event.TransactionCreatedEvent;
 import com.myproject.notificationservice.exception.messaging.handler.NotRetryableException;
 import com.myproject.notificationservice.exception.messaging.handler.RetryableException;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,6 @@ import java.util.Map;
 /**
  * @author Miroslav Kološnjaji
  */
-@Profile("!dev")
 @Configuration
 @RequiredArgsConstructor
 public class KafkaConfiguration {
@@ -43,6 +43,7 @@ public class KafkaConfiguration {
         config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, environment.getProperty("consumer.group-id"));
         config.put(JsonDeserializer.TRUSTED_PACKAGES, environment.getProperty("spring.kafka.consumer.properties.spring.json.trusted.packages"));
+
 
         return new DefaultKafkaConsumerFactory<>(config);
     }

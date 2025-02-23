@@ -1,6 +1,6 @@
 package com.myproject.notificationservice.dto;
 
-import com.myproject.notificationservice.model.NotificationType;
+import com.myproject.notificationservice.model.EmailStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,12 +24,14 @@ public class TransactionNotificationDTO {
 
     private Long transactionId;
     private Long userId;
+    private String email;
     private String accountNumber;
     private BigDecimal amount;
     private BigDecimal balance;
+    private String currency;
     private String transactionType;
     private String status;
     private String description;
-    private NotificationType notificationType;
+    private EmailStatus emailStatus;
     private Instant createdAt;
 }
