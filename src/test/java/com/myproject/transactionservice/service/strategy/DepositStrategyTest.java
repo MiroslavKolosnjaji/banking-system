@@ -48,7 +48,7 @@ class DepositStrategyTest {
         AccountResponse accountResponse = AccountResponse.builder().build();
         TransactionDetailsDTO transactionDetailsDTO = TransactionDetailsDTO.builder().build();
 
-        when(userClient.isUserExists(anyLong())).thenReturn(true);
+        when(userClient.isUserExists(anyLong())).thenReturn("test@example.com");
         when(accountMapper.depositDTOToDepositRequestDTO(depositDTO)).thenReturn(depositRequestDTO);
         when(accountClient.deposit(depositDTO.getAccountId(), depositRequestDTO)).thenReturn(accountResponse);
         when(accountMapper.accountResponseToTransactionDetailsDTO(accountResponse)).thenReturn(transactionDetailsDTO);

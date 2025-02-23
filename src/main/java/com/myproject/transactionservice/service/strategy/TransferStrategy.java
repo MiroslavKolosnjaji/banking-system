@@ -31,12 +31,13 @@ public class TransferStrategy implements TransactionStrategy {
 
         TransferDTO transferDTO = (TransferDTO) baseDTO;
 
-        userClient.isUserExists(transferDTO.getUserId());
+        String email = userClient.isUserExists(transferDTO.getUserId());
 
         TransferRequestDTO transferRequestDTO = accountMapper.transferDTOToTransferRequestDTO(transferDTO);
         AccountResponse accountResponse = accountClient.transfer(transferDTO.getAccountId(), transferRequestDTO);
         TransactionDetailsDTO transactionDetailsDTO = accountMapper.accountResponseToTransactionDetailsDTO(accountResponse);
 
+        transactionDetailsDTO.setEmail(email);
         transactionDetailsDTO.setStatus(setStatus(transactionDetailsDTO));
         transactionDetailsDTO.setDescription(setUpDescription(transactionDetailsDTO.getDescription()));
         transactionDetailsDTO.setCurrency(setCurrency(transactionDetailsDTO.getCurrency(), transferDTO.getCurrency()));

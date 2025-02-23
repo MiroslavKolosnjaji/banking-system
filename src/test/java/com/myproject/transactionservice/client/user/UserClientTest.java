@@ -40,12 +40,12 @@ class UserClientTest {
 
         mockWebServer.enqueue(new MockResponse()
                 .setResponseCode(HttpStatus.OK.value())
-                .setBody(objectMapper.writeValueAsString(true))
+                .setBody("test@example.com")
                 .addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE));
 
-        boolean result = userClient.isUserExists(1L);
+        String result = userClient.isUserExists(1L);
 
-        assertTrue(result, "Result should be true.");
+        assertEquals("test@example.com", result, "Email address doesn't match.");
 
         mockWebServer.takeRequest();
     }

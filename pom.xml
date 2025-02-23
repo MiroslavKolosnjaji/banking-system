@@ -69,7 +69,7 @@
         <dependency>
             <groupId>com.github.MiroslavKolosnjaji</groupId>
             <artifactId>core</artifactId>
-            <version>main-bf73cccbe7-1</version>
+            <version>0.0.6</version>
         </dependency>
 
 
