@@ -205,6 +205,8 @@ services:
       - MONGODB_PASSWORD=secret
       - MONGODB_DATABASE=notification_db
       - SPRING_PROFILES_ACTIVE=prod
+      - YOUR_USERNAME=yourEmail@gmail.com
+      - YOUR_PASSWORD=yourPassword
 
   notification-db:
     image: mongo:latest
