@@ -1,6 +1,7 @@
 package com.myproject.userservice.service;
 
 import com.myproject.userservice.dto.user.UserDTO;
+import com.myproject.userservice.exception.service.EmailNotFoundException;
 import com.myproject.userservice.exception.service.UserNotFoundException;
 
 
@@ -9,5 +10,5 @@ import com.myproject.userservice.exception.service.UserNotFoundException;
  */
 public interface UserService extends BaseCRUD<UserDTO, Long> {
 
-    Boolean checkIfUserExists(Long id) throws UserNotFoundException;
+    String getUserEmail(Long id) throws UserNotFoundException, EmailNotFoundException;
 }

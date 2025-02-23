@@ -6,6 +6,7 @@ import com.myproject.userservice.dto.account.AccountDTO;
 import com.myproject.userservice.dto.account.CreateAccountDTO;
 import com.myproject.userservice.dto.role.RoleDTO;
 import com.myproject.userservice.dto.user.UserDTO;
+import com.myproject.userservice.exception.service.EmailNotFoundException;
 import com.myproject.userservice.exception.service.UserAlreadyExistsException;
 import com.myproject.userservice.exception.service.UserNotFoundException;
 import com.myproject.userservice.mapper.AccountMapper;
@@ -116,13 +117,17 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    public Boolean checkIfUserExists(Long id) throws UserNotFoundException {
+    public String getUserEmail (Long id) throws UserNotFoundException, EmailNotFoundException {
 
-        if (userRepository.existsById(id))
-            return true;
+        checkIfUserExists(id);
 
-        throw new UserNotFoundException("User not found");
+        return userRepository.findUserEmailById(id)
+                .orElseThrow(() -> new EmailNotFoundException("Email not found for user with ID " + id));
+    }
 
+    void checkIfUserExists(Long id) throws UserNotFoundException{
+        if (!userRepository.existsById(id))
+            throw new UserNotFoundException("User not found");
     }
 
     private User getUserById(Long id) throws UserNotFoundException {
