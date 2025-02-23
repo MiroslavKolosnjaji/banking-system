@@ -7,6 +7,7 @@ import com.myproject.userservice.dto.account.AccountDTO;
 import com.myproject.userservice.dto.account.CreateAccountDTO;
 import com.myproject.userservice.dto.role.RoleDTO;
 import com.myproject.userservice.dto.user.UserDTO;
+import com.myproject.userservice.exception.service.EmailNotFoundException;
 import com.myproject.userservice.exception.service.UserAlreadyExistsException;
 import com.myproject.userservice.exception.service.UserNotFoundException;
 import com.myproject.userservice.mapper.AccountMapper;
@@ -304,23 +305,24 @@ class UserServiceImplTest {
         assertThrows(UserNotFoundException.class, executable, "Exception doesn't match. Expected UserNotFoundException");
     }
 
-    @DisplayName("Check If User Exists")
+    @DisplayName("Get User Email Address")
     @Test
-    void testCheckIfUserExists_whenValidIdProvided_returnsTrue() throws UserNotFoundException {
+    void testGetUserEmail_whenValidIdProvided_returnsTrue() throws UserNotFoundException, EmailNotFoundException {
 
         when(userRepository.existsById(anyLong())).thenReturn(true);
+        when(userRepository.findUserEmailById(anyLong())).thenReturn(Optional.ofNullable(userDTO.getEmail()));
 
-        boolean result = userService.checkIfUserExists(anyLong());
+        String email = userService.getUserEmail(anyLong());
 
-        assertTrue(result, "Result should be true.");
+        assertEquals(userDTO.getEmail(), email, "Email should be equal.");
 
         verify(userRepository).existsById(anyLong());
 
     }
 
-    @DisplayName("Check If User Exists FAILED")
+    @DisplayName("Get User Email Address FAILED")
     @Test
-    void testCheckIfUserExists_whenInvalidIdProvided_thenThrowUserNotFoundException() throws UserNotFoundException {
+    void testGetUserExists_whenInvalidIdProvided_thenThrowUserNotFoundException() throws UserNotFoundException {
 
         when(userRepository.existsById(anyLong())).thenReturn(false);
 

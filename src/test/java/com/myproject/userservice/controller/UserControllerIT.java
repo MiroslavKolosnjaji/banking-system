@@ -247,4 +247,13 @@ class UserControllerIT {
                 .andExpect(status().isNotFound());
     }
 
+    @DisplayName("Get User Email Address")
+    @Test
+    @Order(8)
+    void testGetUserEmailAddress_whenValidIdProvided_returns201StatusCode() throws Exception {
+
+        mockMvc.perform(get(UserController.USER_URI_CHECK_USER, 1)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
 }

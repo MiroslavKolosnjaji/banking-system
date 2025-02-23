@@ -2,7 +2,6 @@ package com.myproject.userservice.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.myproject.userservice.dto.role.RoleDTO;
 import com.myproject.userservice.dto.user.UserDTO;
 import com.myproject.userservice.exception.service.UserAlreadyExistsException;
 import com.myproject.userservice.exception.service.UserNotFoundException;
@@ -26,6 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @author Miroslav Kološnjaji
@@ -274,39 +274,34 @@ class UserControllerTest {
         verify(userService).deleteById(anyLong());
     }
 
-    @DisplayName("Check If User Exists")
+    @DisplayName("Get User Email Address")
     @Test
-    void testIsUserExists_whenValidIdProvided_returns200StatusCode() throws Exception {
+    void testGetUserEmail_whenValidIdProvided_returns200StatusCode() throws Exception {
 
-        when(userService.checkIfUserExists(anyLong())).thenReturn(true);
+        when(userService.getUserEmail(anyLong())).thenReturn(userDTO.getEmail());
 
         MvcResult mvcResult = mockMvc.perform(get(UserController.USER_URI_CHECK_USER, 1)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
         String response = mvcResult.getResponse().getContentAsString();
-        boolean result = Boolean.parseBoolean(response);
 
         assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus(), statusMessage(200));
-        assertTrue(result, "Result should return true.");
+        assertEquals(userDTO.getEmail(), response, "Result should return user's email address.");
 
     }
 
-    @DisplayName("Check If User Exists FAILED")
+    @DisplayName("Get User Email Address FAILED")
     @Test
-    void testaIsUserExists_whenValidIdProvided_returns200StatusCode() throws Exception {
+    void testGetUserEmail_whenInvalidIdProvided_returns200StatusCode() throws Exception {
 
-        when(userService.checkIfUserExists(anyLong())).thenReturn(true);
+        when(userService.getUserEmail(anyLong())).thenThrow(UserNotFoundException.class);
 
-        MvcResult mvcResult = mockMvc.perform(get(UserController.USER_URI_CHECK_USER, 1)
+        mockMvc.perform(get(UserController.USER_URI_CHECK_USER, 1)
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(true))).andReturn();
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
 
-        String response = mvcResult.getResponse().getContentAsString();
-        boolean result = objectMapper.readValue(response, Boolean.class);
-
-        assertTrue(result, "Result should return true.");
     }
 }
 

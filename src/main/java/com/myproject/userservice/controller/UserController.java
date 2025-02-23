@@ -69,8 +69,8 @@ public class UserController {
     }
 
     @GetMapping("/check" + USER_ID)
-    public ResponseEntity<Boolean> isUserExists(@PathVariable(PATH_VARIABLE) Long userId) throws EntityNotFoundException {
-        return new ResponseEntity<>(userService.checkIfUserExists(userId), HttpStatus.OK);
+    public ResponseEntity<String> isUserExists(@PathVariable(PATH_VARIABLE) Long userId) throws EntityNotFoundException {
+        return new ResponseEntity<>(userService.getUserEmail(userId), HttpStatus.OK);
     }
 
 }
